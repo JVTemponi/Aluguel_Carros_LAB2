@@ -1,7 +1,9 @@
 # Histórias de Usuário
 
+**Usuário**
+- Como usuário, quero poder me cadastrar no sistema para poder acessá-lo.
+
 **Cliente**
-- Como cliente, quero poder me cadastrar no sistema para poder acessá-lo e introduzir, modificar, consultar e cancelar pedidos de aluguel.
 
 -  Como cliente, quero poder introduzir um novo pedido de aluguel no sistema, fornecendo informações sobre o carro que desejo alugar, a duração do aluguel e meus dados de identificação.
 
@@ -11,11 +13,9 @@
 
 - Como cliente, quero poder cancelar um pedido de aluguel existente caso não precise mais do carro ou surja algum imprevisto.
 
-- Como um usuário individual, quero poder visualizar informações sobre o contrato de aluguel, incluindo o tipo de contrato e se o carro é propriedade minha, da empresa ou do banco.
+- Como cliente, quero poder visualizar informações sobre o contrato de aluguel, incluindo o tipo de contrato e se o carro é propriedade minha, da empresa ou do banco.
 
 **Agente**
-
-- Como um agente (empresa ou banco), quero poder me cadastrar no sistema para poder modificar e avaliar pedidos de aluguel.
 
 - Como um agente (empresa ou banco), quero poder acessar os pedidos de aluguel no sistema para avaliar a viabilidade financeira de cada um, levando em consideração o perfil do solicitante e outros fatores.
 
@@ -27,7 +27,7 @@
 
 - Como um agente (empresa ou banco), quero poder registrar informações sobre o carro alugado no sistema, incluindo matrícula, ano, marca, modelo e placa.
 
-- Como um agente (empresa ou banco), quero poder registrar informações sobre o contrato de crédito associado ao aluguel do carro, incluindo o banco concedente e as condições do empréstimo.
+- Como um agente (banco), quero poder registrar informações sobre o contrato de crédito associado ao aluguel do carro, incluindo o banco concedente e as condições do empréstimo.
 
 - Como um agente (empresa ou banco), quero poder executar o contrato de aluguel aprovado, entregando o carro ao solicitante e registrando essa informação no sistema.
 
