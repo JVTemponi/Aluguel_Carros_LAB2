@@ -9,8 +9,9 @@ import { ClienteService } from '../shared/services/cliente.service';
   styleUrls: ['./cliente.component.less']
 })
 export class ClienteComponent implements OnInit {
-  @ViewChild('closebutton') closebutton: any;
+  @ViewChild('closeButton') closeButton: any;
 
+  showModal: boolean = false;
   clientes: Array<ClienteModel> = [];
   action: string = '';
   title: string = '';
@@ -34,13 +35,17 @@ export class ClienteComponent implements OnInit {
     switch (this.action) {
       case 'create':
         this.clienteService.saveCliente(this.form.value).then(resp => {
-          this.closebutton.nativeElement.click();
+          this.closeButton.nativeElement.click();
+        }).catch(error => {
+          this.closeButton.nativeElement.click();
         });
         break;
       case 'edit':
         this.clienteService.updateCliente(this.form.value).then(resp => {
-          this.closebutton.nativeElement.click();
-        });
+          this.closeButton.nativeElement.click();
+        }).catch(error => {
+          this.closeButton.nativeElement.click();
+        });;
         break;
 
       default:
@@ -53,14 +58,17 @@ export class ClienteComponent implements OnInit {
     switch (action) {
       case 'view':
         this.title = 'Visualizar Cliente'
+        this.showModal = true;
         break;
 
       case 'edit':
         this.title = 'Editar Cliente'
+        this.showModal = true;
         break;
 
       case 'create':
         this.title = 'Incluir Cliente'
+        this.showModal = true;
         break;
 
       default:
@@ -70,10 +78,14 @@ export class ClienteComponent implements OnInit {
 
   getClientes() {
     this.clienteService.getAllCliente().then(resp => {
-      this.clientes = resp.content;
+      this.clientes = resp;
     }).catch(error => {
       console.log(error);
     })
+  }
+
+  switchModal() {
+    this.showModal = false;
   }
 
 }
