@@ -28,15 +28,7 @@ export class ClienteService extends BaseService {
     return this.delete("/cliente/" + id);
   }
 
-  updateCliente(cliente: ClienteModel) {
-    const clienteFormat = {nome: cliente.nome,
-      cpf: cliente.cpf,
-      cnh: cliente.cnh,
-      endereco: cliente.endereco,
-      dataNascimento: cliente.dataNascimento,
-      rg: cliente.rg,
-      profissao: cliente.profissao,
-      rendimentos: cliente.rendimentos}
-    return this.put("/cliente/" + cliente.id, clienteFormat);
+  updateCliente(cliente: ClienteModel, id: string) {
+    return this.put("/cliente/" + id, cliente);
   }
 }

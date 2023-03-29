@@ -44,7 +44,7 @@ export class ClienteComponent implements OnInit {
         });
         break;
       case 'edit':
-        this.clienteService.updateCliente(this.clienteSelecionado).then(resp => {
+        this.clienteService.updateCliente(this.form.value, this.clienteSelecionado.id).then(resp => {
           this.getClientes();
           this.switchAction();
         }).catch(error => {
