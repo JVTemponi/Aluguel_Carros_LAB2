@@ -32,7 +32,7 @@
     <div class="card col-8">
         <h5 class="card-header">{{title}}</h5>
         <div class="card-body">
-            <form formGroupName="form">
+            <form [formGroup]="form">
                 <label for="nome" class="form-label">Nome</label>
                 <input type="text" id="nome" class="form-control" aria-labelledby="nomeInput"
                     [disabled]="action == 'view'" formControlName="nome" [value]="clienteSelecionado?.nome">
