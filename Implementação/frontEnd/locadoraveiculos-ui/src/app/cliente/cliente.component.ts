@@ -11,9 +11,10 @@ import { ClienteService } from '../shared/services/cliente.service';
 export class ClienteComponent implements OnInit {
   @ViewChild('closeButton') closeButton: any;
 
-  showModal: boolean = false;
+  showAction: boolean = false;
   clientes: Array<ClienteModel> = [];
-  action: string = '';
+  clienteSelecionado: ClienteModel;
+  action: string = 'edit';
   title: string = '';
   form: FormGroup = new FormGroup({
     nome: new FormControl(''),
@@ -35,16 +36,18 @@ export class ClienteComponent implements OnInit {
     switch (this.action) {
       case 'create':
         this.clienteService.saveCliente(this.form.value).then(resp => {
-          this.closeButton.nativeElement.click();
+          this.getClientes();
+          this.switchAction();
         }).catch(error => {
-          this.closeButton.nativeElement.click();
+          this.switchAction();
         });
         break;
       case 'edit':
         this.clienteService.updateCliente(this.form.value).then(resp => {
-          this.closeButton.nativeElement.click();
+          this.getClientes();
+          this.switchAction();
         }).catch(error => {
-          this.closeButton.nativeElement.click();
+          this.switchAction();
         });;
         break;
 
@@ -53,22 +56,32 @@ export class ClienteComponent implements OnInit {
     }
   }
 
-  setAction(action: string) {
+  deletar(cliente: ClienteModel) {
+    this.clienteService.deleteCliente(cliente.id).then(
+      resp => this.getClientes()
+    )
+  }
+
+  setAction(action: string, cliente: ClienteModel | null = null) {
     this.action = action;
     switch (action) {
       case 'view':
         this.title = 'Visualizar Cliente'
-        this.showModal = true;
+        if(cliente) 
+          this.clienteSelecionado = cliente;
+        this.showAction = true;
         break;
 
       case 'edit':
         this.title = 'Editar Cliente'
-        this.showModal = true;
+        if(cliente) 
+          this.clienteSelecionado = cliente;
+        this.showAction = true;
         break;
 
       case 'create':
         this.title = 'Incluir Cliente'
-        this.showModal = true;
+        this.showAction = true;
         break;
 
       default:
@@ -84,8 +97,12 @@ export class ClienteComponent implements OnInit {
     })
   }
 
-  switchModal() {
-    this.showModal = false;
+  switchAction() {
+    this.showAction = false;
+  }
+
+  canSave(): boolean {
+    return this.action !== 'view'
   }
 
 }
