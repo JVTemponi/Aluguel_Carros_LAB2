@@ -19,8 +19,9 @@ export class ClienteComponent implements OnInit {
   form: FormGroup = new FormGroup({
     nome: new FormControl(''),
     cpf: new FormControl(''),
+    rg: new FormControl(''),
     cnh: new FormControl(''),
-    nascimento: new FormControl(''),
+    dataNascimento: new FormControl(''),
     rendimentos: new FormControl(''),
     endereco: new FormControl(''),
     profissao: new FormControl('')
@@ -43,7 +44,7 @@ export class ClienteComponent implements OnInit {
         });
         break;
       case 'edit':
-        this.clienteService.updateCliente(this.form.value).then(resp => {
+        this.clienteService.updateCliente(this.clienteSelecionado).then(resp => {
           this.getClientes();
           this.switchAction();
         }).catch(error => {
@@ -91,7 +92,7 @@ export class ClienteComponent implements OnInit {
 
   getClientes() {
     this.clienteService.getAllCliente().then(resp => {
-      this.clientes = resp;
+      this.clientes = resp.content;
     }).catch(error => {
       console.log(error);
     })

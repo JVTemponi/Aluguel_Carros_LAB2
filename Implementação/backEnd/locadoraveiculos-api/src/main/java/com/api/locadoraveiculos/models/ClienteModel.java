@@ -14,6 +14,9 @@ public class ClienteModel implements Serializable {
     private UUID id;
     @Column(unique = true, length = 11)
     private String cpf;
+
+    @Column(unique = true, length = 11)
+    private String nome;
     @Column(nullable = false, length = 11)
     private String cnh;
     @Column(nullable = false, length = 200)
@@ -41,6 +44,14 @@ public class ClienteModel implements Serializable {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCnh() {

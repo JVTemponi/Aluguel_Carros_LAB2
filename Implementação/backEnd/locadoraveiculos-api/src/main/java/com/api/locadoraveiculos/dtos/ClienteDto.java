@@ -8,6 +8,8 @@ public class ClienteDto {
     @NotBlank
     private String cpf;
     @NotBlank
+    private String nome;
+    @NotBlank
     private String cnh;
     @NotBlank
     private String endereco;
@@ -26,6 +28,14 @@ public class ClienteDto {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCnh() {
