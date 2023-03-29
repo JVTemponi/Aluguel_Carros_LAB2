@@ -21,8 +21,8 @@
                 <td>{{cliente.dataNascimento}}</td>
                 <td>{{cliente.rendimentos}}</td>
                 <td>
-                    <button class="btn-primary"(click)="setAction('editar', cliente)">Edit</button>
-                    <button class="btn-danger" (click)="deletar(cliente)">Delete</button>
+                    <button type="button" class="btn btn-primary"(click)="setAction('editar', cliente)">Edit</button>
+                    <button type="button" class="btn btn-danger" (click)="deletar(cliente)">Delete</button>
                 </td>
             </tr>
         </tbody>
