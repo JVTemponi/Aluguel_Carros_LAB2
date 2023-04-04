@@ -2,6 +2,8 @@ package com.api.locadoraveiculos.dtos;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Set;
 
 public class ClienteDto {
 
@@ -17,10 +19,9 @@ public class ClienteDto {
     private String dataNascimento;
     @NotBlank
     private String rg;
+
     @NotBlank
-    private String profissao;
-    @NotBlank
-    private String rendimentos;
+    private Set<ClienteEmpregoDto> clienteEmprego;
 
     public String getCpf() {
         return cpf;
@@ -68,21 +69,5 @@ public class ClienteDto {
 
     public void setRg(String rg) {
         this.rg = rg;
-    }
-
-    public String getProfissao() {
-        return profissao;
-    }
-
-    public void setProfissao(String profissao) {
-        this.profissao = profissao;
-    }
-
-    public String getRendimentos() {
-        return rendimentos;
-    }
-
-    public void setRendimentos(String rendimentos) {
-        this.rendimentos = rendimentos;
     }
 }
