@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../shared/services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +10,24 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  form = new FormGroup({
+    login: new FormControl(''),
+    senha: new FormControl('')
+  })
+
   constructor(
-    private router: Router
+    private router: Router,
+    private usuarioService: UsuarioService
   ) { }
 
   ngOnInit(): void {
-    this.router.navigate(['cliente']);
+    
+  }
+
+  login( ) {
+    this.usuarioService.login(this.form.value).then(
+      resp => this.router.navigate(['cliente'])
+    ).catch(error => console.log(error));
   }
 
 }

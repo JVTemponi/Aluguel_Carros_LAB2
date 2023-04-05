@@ -22,9 +22,7 @@ export class ClienteComponent implements OnInit {
     rg: new FormControl(''),
     cnh: new FormControl(''),
     dataNascimento: new FormControl(''),
-    rendimentos: new FormControl(''),
-    endereco: new FormControl(''),
-    profissao: new FormControl('')
+    endereco: new FormControl('')
   });
 
   constructor(private clienteService: ClienteService) { }
