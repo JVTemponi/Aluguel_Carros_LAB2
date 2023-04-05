@@ -1,19 +1,23 @@
 package com.api.locadoraveiculos.dtos;
 
+import com.api.locadoraveiculos.models.ClienteModel;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 public class EmpregoDto {
 
     @NotBlank
     private String descricao;
-    @NotBlank
+    @NotNull
     private double renda;
-    @NotBlank
+    @NotNull
     private boolean ativo;
 
-    @NotBlank
-    private Set<ClienteEmpregoDto> clienteEmprego;
+    private ClienteModel cliente;
 
     public String getDescricao() {
         return descricao;
@@ -37,5 +41,13 @@ public class EmpregoDto {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public ClienteModel getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -48,6 +49,11 @@ public class EmpregoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Emprego not found.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(empregoModelOptional.get());
+    }
+
+    @GetMapping("/cliente/{id}")
+    public ResponseEntity<List<EmpregoModel>> getClienteEmprego(@PathVariable(value = "id") UUID id){
+        return ResponseEntity.status(HttpStatus.OK).body(empregoService.findAllByClienteId(id));
     }
 
     @DeleteMapping("/{id}")

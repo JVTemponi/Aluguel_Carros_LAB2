@@ -13,16 +13,17 @@ public class EmpregoModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(unique = true, length = 150)
+    @Column(nullable = false, length = 150)
     private String descricao;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private double renda;
-    @Column(nullable = true)
+    @Column(nullable = false)
     private boolean ativo;
 
-    @OneToMany(mappedBy = "emprego")
-    Set<ClienteEmpregoModel> clienteEmprego;
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="cliente_id")
+    private ClienteModel cliente;
 
     public UUID getId() {
         return id;
@@ -54,5 +55,13 @@ public class EmpregoModel implements Serializable {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public ClienteModel getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 }

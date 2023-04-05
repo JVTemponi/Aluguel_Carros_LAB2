@@ -1,8 +1,12 @@
 package com.api.locadoraveiculos.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class ClienteDto {
@@ -20,8 +24,6 @@ public class ClienteDto {
     @NotBlank
     private String rg;
 
-    @NotBlank
-    private Set<ClienteEmpregoDto> clienteEmprego;
 
     public String getCpf() {
         return cpf;
@@ -70,4 +72,5 @@ public class ClienteDto {
     public void setRg(String rg) {
         this.rg = rg;
     }
+
 }

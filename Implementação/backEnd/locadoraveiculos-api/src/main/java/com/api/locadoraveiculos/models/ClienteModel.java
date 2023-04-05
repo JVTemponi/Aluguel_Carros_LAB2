@@ -3,6 +3,7 @@ package com.api.locadoraveiculos.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -17,7 +18,7 @@ public class ClienteModel implements Serializable {
     @Column(unique = true, length = 11)
     private String cpf;
 
-    @Column(unique = true, length = 11)
+    @Column(nullable = false, length = 150)
     private String nome;
     @Column(nullable = false, length = 11)
     private String cnh;
@@ -27,8 +28,6 @@ public class ClienteModel implements Serializable {
     private String dataNascimento;
     @Column(nullable = false, length = 12)
     private String rg;
-    @OneToMany(mappedBy = "cliente")
-    Set<ClienteEmpregoModel> clienteEmprego;
 
     public UUID getId() {
         return id;

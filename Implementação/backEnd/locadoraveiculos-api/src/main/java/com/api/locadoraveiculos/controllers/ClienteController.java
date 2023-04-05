@@ -2,7 +2,9 @@ package com.api.locadoraveiculos.controllers;
 
 import com.api.locadoraveiculos.dtos.ClienteDto;
 import com.api.locadoraveiculos.models.ClienteModel;
+import com.api.locadoraveiculos.models.EmpregoModel;
 import com.api.locadoraveiculos.services.ClienteService;
+import com.api.locadoraveiculos.services.EmpregoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +24,15 @@ import java.util.UUID;
 public class ClienteController {
 
     final ClienteService clienteService;
+    final EmpregoService empregoService;
 
-    public ClienteController(ClienteService clienteService) {
+    public ClienteController(ClienteService clienteService,
+                             EmpregoService empregoService) {
         this.clienteService = clienteService;
+        this.empregoService = empregoService;
     }
+
+
 
     @PostMapping
     public ResponseEntity<Object> saveCliente(@RequestBody @Valid ClienteDto clienteDto){
@@ -60,7 +67,7 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateCliente(@PathVariable(value = "id") UUID id,
-                                                    @RequestBody @Valid ClienteDto clienteDto){
+                                                @RequestBody @Valid ClienteDto clienteDto){
         Optional<ClienteModel> clienteModelOptional = clienteService.findById(id);
         if (!clienteModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente not found.");

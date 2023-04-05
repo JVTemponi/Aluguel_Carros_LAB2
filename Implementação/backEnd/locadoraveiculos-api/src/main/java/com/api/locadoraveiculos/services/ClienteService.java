@@ -1,6 +1,9 @@
 package com.api.locadoraveiculos.services;
 
 import com.api.locadoraveiculos.models.ClienteModel;
+import com.api.locadoraveiculos.models.EmpregoModel;
+import com.api.locadoraveiculos.models.ClienteModel;
+import com.api.locadoraveiculos.repositories.EmpregoRepository;
 import com.api.locadoraveiculos.repositories.ClienteRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

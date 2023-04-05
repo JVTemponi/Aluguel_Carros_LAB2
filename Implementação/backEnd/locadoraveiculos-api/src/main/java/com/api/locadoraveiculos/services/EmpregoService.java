@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,6 +32,10 @@ public class EmpregoService {
 
     public Optional<EmpregoModel> findById(UUID id) {
         return empregoRepository.findById(id);
+    }
+
+    public List<EmpregoModel> findAllByClienteId(UUID clienteId) {
+        return empregoRepository.findAllByClienteId(clienteId);
     }
 
     @Transactional
