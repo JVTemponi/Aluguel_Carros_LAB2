@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ClienteModel } from '../shared/models/cliente.model';
 import { ClienteService } from '../shared/services/cliente.service';
+import { EmpregoService } from '../shared/services/emprego.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente',
@@ -17,15 +19,26 @@ export class ClienteComponent implements OnInit {
   action: string = 'edit';
   title: string = '';
   form: FormGroup = new FormGroup({
-    nome: new FormControl(''),
-    cpf: new FormControl(''),
-    rg: new FormControl(''),
-    cnh: new FormControl(''),
-    dataNascimento: new FormControl(''),
-    endereco: new FormControl('')
+    nome: new FormControl({value: '', disabled: this.action == 'view'}),
+    cpf: new FormControl({value: '', disabled: this.action == 'view'}),
+    rg: new FormControl({value: '', disabled: this.action == 'view'}),
+    cnh: new FormControl({value: '', disabled: this.action == 'view'}),
+    dataNascimento: new FormControl({value: '', disabled: this.action == 'view'}),
+    endereco: new FormControl({value: '', disabled: this.action == 'view'})
   });
 
-  constructor(private clienteService: ClienteService) { }
+  formEmprego: FormGroup = new FormGroup({
+    descricao1: new FormControl(''),
+    renda1: new FormControl(''),
+    descricao2: new FormControl(''),
+    renda2: new FormControl(''),
+    descricao3: new FormControl(''),
+    renda3: new FormControl('')
+  });
+
+  constructor(private clienteService: ClienteService,
+    private empregoService: EmpregoService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getClientes();
@@ -35,8 +48,8 @@ export class ClienteComponent implements OnInit {
     switch (this.action) {
       case 'create':
         this.clienteService.saveCliente(this.form.value).then(resp => {
-          this.getClientes();
-          this.switchAction();
+          this.createEmpregos(resp as ClienteModel)
+          this.router.navigate(['cliente'])
         }).catch(error => {
           this.switchAction();
         });
@@ -58,6 +71,8 @@ export class ClienteComponent implements OnInit {
   deletar(cliente: ClienteModel) {
     this.clienteService.deleteCliente(cliente.id).then(
       resp => this.getClientes()
+    ).catch(error =>
+      this.getClientes()
     )
   }
 
@@ -102,6 +117,33 @@ export class ClienteComponent implements OnInit {
 
   canSave(): boolean {
     return this.action !== 'view'
+  }
+
+  createEmpregos(cliente: ClienteModel) {
+    if(this.formEmprego.controls['descricao1'].value) {
+      this.empregoService.create({
+        descricao: this.formEmprego.controls['descricao1'].value,
+        renda: this.formEmprego.controls['renda1'].value,
+        ativo: true,
+        cliente: cliente
+      });
+    }
+    if(this.formEmprego.controls['descricao2'].value) {
+      this.empregoService.create({
+        descricao: this.formEmprego.controls['descricao2'].value,
+        renda: this.formEmprego.controls['renda2'].value,
+        ativo: true,
+        cliente: cliente
+      });
+    }
+    if(this.formEmprego.controls['descricao3'].value) {
+      this.empregoService.create({
+        descricao: this.formEmprego.controls['descricao3'].value,
+        renda: this.formEmprego.controls['renda3'].value,
+        ativo: true,
+        cliente: cliente
+      });
+    }
   }
 
 }

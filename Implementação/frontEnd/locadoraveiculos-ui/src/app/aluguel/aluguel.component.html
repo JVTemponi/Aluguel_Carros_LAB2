@@ -32,18 +32,27 @@
         <div class="card-body">
             <form [formGroup]="form">
                 <label for="automovel" class="form-label">Automovel</label>
-                <input type="text" id="automovel" class="form-control" aria-labelledby="automovelInput" formControlName="automovel">
+                <input type="text" id="automovel" class="form-control" aria-labelledby="automovelInput"
+                    formControlName="automovel">
                 <label for="dataInicio" class="form-label">Data de Início</label>
-                <input type="date" id="dataInicio" class="form-control" aria-labelledby="dataInicioInput" formControlName="dataInicio">
+                <input type="date" id="dataInicio" class="form-control" aria-labelledby="dataInicioInput"
+                    formControlName="dataInicio">
                 <label for="dataInicio" class="form-label">Data de Fim</label>
-                <input type="date" id="dataFim" class="form-control" aria-labelledby="dataFimInput" formControlName="dataFim">
+                <input type="date" id="dataFim" class="form-control" aria-labelledby="dataFimInput"
+                    formControlName="dataFim">
                 <label for="valorAluguel" class="form-label">Valor</label>
-                <input type="text" id="valorAluguel" class="form-control" aria-labelledby="valorAluguel" formControlName="valorAluguel">
+                <input type="text" id="valorAluguel" class="form-control" aria-labelledby="valorAluguel"
+                    formControlName="valorAluguel">
                 <label for="valorCaucao" class="form-label">Valor Caução</label>
-                <input type="text" id="valorCaucao" class="form-control" aria-labelledby="valorCaucao" formControlName="valorCaucao">
-                <label for="statusContrato" class="form-label">Valor Caução</label>
+                <input type="text" id="valorCaucao" class="form-control" aria-labelledby="valorCaucao"
+                    formControlName="valorCaucao">
+                <label for="statusContrato" class="form-label">Status</label>
                 <input type="text" id="statusContrato" class="form-control" aria-labelledby="statusContrato"
-                 formControlName="statusContrato" [disabled]="true" [value]="'Em Andamento'">
+                    formControlName="statusContrato" value="Em Andamento">
+                <label for="cliente" class="form-label">Cliente</label>
+                <select id="cliente" class="form-control" aria-labelledby="cliente" formControlName="cliente">
+                    <option *ngFor="let cliente of clientes" [value]="cliente.id">{{cliente.nome}}</option>
+                </select>
             </form>
 
             <div class="mt-2">

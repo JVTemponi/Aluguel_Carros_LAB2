@@ -9,7 +9,6 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Cpf</th>
                 <th scope="col">Data Nascimento</th>
-                <th scope="col">Rendimentos</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -18,7 +17,6 @@
                 <td>{{cliente.nome}}</td>
                 <td>{{cliente.cpf}}</td>
                 <td>{{cliente.dataNascimento}}</td>
-                <td>{{cliente.rendimentos}}</td>
                 <td>
                     <button type="button" class="btn btn-primary m-1" (click)="setAction('edit', cliente)">Editar</button>
                     <button type="button" class="btn btn-danger m-1" (click)="deletar(cliente)">Deletar</button>
@@ -51,6 +49,29 @@
                 <label for="endereco" class="form-label">Endereço</label>
                 <input type="string" id="endereco" class="form-control" aria-labelledby="enderecoInput"
                     [disabled]="action == 'view'" formControlName="endereco" [value]="clienteSelecionado?.endereco">
+            </form>
+            <form [formGroup]="formEmprego">
+                <label for="emprego1" class="form-label">Emprego 1 - </label>
+                <label for="descricao1" class="form-label">Descricao</label>
+                <input type="text" id="descricao1" class="form-control" aria-labelledby="descricao1Input"
+                    formControlName="descricao1">
+                <label for="renda1" class="form-label">Renda</label>
+                <input type="number" id="renda1" class="form-control" aria-labelledby="renda1Input"
+                    formControlName="renda1">
+                <label for="emprego2" class="form-label">Emprego 2 - </label>
+                <label for="descricao2" class="form-label">Descricao</label>
+                <input type="text" id="descricao2" class="form-control" aria-labelledby="descricao2Input"
+                    formControlName="descricao2">
+                <label for="renda2" class="form-label">Renda</label>
+                <input type="number" id="renda2" class="form-control" aria-labelledby="renda2Input"
+                    formControlName="renda2">
+                <label for="emprego3" class="form-label">Emprego 3 - </label>
+                <label for="descricao3" class="form-label">Descricao</label>
+                <input type="text" id="descricao3" class="form-control" aria-labelledby="descricao3Input"
+                    formControlName="descricao3">
+                <label for="renda3" class="form-label">Renda</label>
+                <input type="number" id="renda3" class="form-control" aria-labelledby="renda3Input"
+                    formControlName="renda3">
             </form>
 
             <div class="mt-2">

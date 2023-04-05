@@ -13,10 +13,10 @@ export class AluguelService extends BaseService {
   }
 
   create(aluguel: AluguelModel) {
-    return this.post('aluguel', aluguel);
+    return this.post('/aluguel', aluguel);
   }
 
   getAll() {
-    return this.get('aluguel');
+    return this.get('/aluguel');
   }
 }

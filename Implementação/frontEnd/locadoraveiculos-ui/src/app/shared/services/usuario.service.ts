@@ -13,6 +13,6 @@ export class UsuarioService extends BaseService {
   }
 
   login(usuario: UsuarioModel) {
-    return this.post('usuario/login', usuario);
+    return this.post('/usuario/login', usuario);
   }
 }
