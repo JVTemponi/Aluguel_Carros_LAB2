@@ -7,6 +7,8 @@ import { LoginModule } from './login/login.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AluguelComponent } from './aluguel/aluguel.component';
+import { AluguelModule } from './aluguel/aluguel.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     AppRoutingModule,
     LoginModule,
     ClienteModule,
+    AluguelModule,
     NgbModule,
     HttpClientModule,
     ModalModule.forRoot()
